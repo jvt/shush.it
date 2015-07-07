@@ -1,0 +1,24 @@
+{
+  "name": "shush.it",
+  "version": "0.0.1",
+  "homepage": "https://shush.it/",
+  "authors": [
+    "Joe Torraca <joe@joetorraca.com>",
+    "Henri Watson <henri@henriwatson.com>"
+  ],
+  "moduleType": [
+    "node"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/components/",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.4"
+  }
+}
