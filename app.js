@@ -13,7 +13,13 @@ var routes = require('./routes/index');
 var app = express();
 
 // view engine setup
-app.engine('handlebars', exphbs({defaultLayout: 'main'}));
+var hbs = exphbs.create({
+  defaultLayout: 'main',
+  partialsDir: [
+    'views/partials'
+  ]
+});
+app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 
 // uncomment when shipping into production
