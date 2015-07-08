@@ -8,14 +8,15 @@
   <link rel="stylesheet" href="/stylesheets/style.css"/>
 </head>
 <body class="mdl-color--grey-100 mdl-color-text--grey-700 mdl-base">
- 
-  <div class="mdl-layout__container has-scrolling-header">
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
       {{> navigation }} 
-      {{{ body }}}
+      <main class="mdl-layout__content">
+        {{{ body }}}
+        {{> footer }}
+      </main>
       
     </div>
-  </div>
+    <div class="mdl-layout__obfuscator"></div>
   
   <script type="text/javascript" src="/components/jquery/dist/jquery.min.js"></script>
   <script type="text/javascript" src="/components/material-design-lite/material.min.js"></script>
