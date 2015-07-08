@@ -4,5 +4,8 @@
       "consumerKey": "",
       "secret": ""
     }
+  },
+  "session": {
+    "secret": ""
   }
 }

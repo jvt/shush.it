@@ -8,6 +8,7 @@ var exphbs  = require('express-handlebars');
 var nconf = require('nconf');
 var OAuth = require('oauth');
 var path = require('path');
+var session = require('express-session');
 
 var routes = require('./routes/index');
 
@@ -41,6 +42,12 @@ GLOBAL.oauth = new OAuth.OAuth(
   null,
   'HMAC-SHA1'
 );
+
+app.use(session({
+  secret: config.get('session').secret,
+  resave: false,
+  saveUninitialized: false
+}));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
