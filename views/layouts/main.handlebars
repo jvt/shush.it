@@ -8,15 +8,14 @@
   <link rel="stylesheet" href="/stylesheets/style.css"/>
 </head>
 <body class="mdl-color--grey-100 mdl-color-text--grey-700 mdl-base">
-    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+    <div class="sticky-footer-wrapper mdl-layout mdl-js-layout mdl-layout--fixed-header">
       {{> navigation }} 
       <main class="mdl-layout__content">
         {{{ body }}}
-        {{> footer }}
+        {{!-- <div class="sticky-footer-push"></div> --}}
       </main>
-      
     </div>
-    <div class="mdl-layout__obfuscator"></div>
+    {{> footer }}
   
   <script type="text/javascript" src="/components/jquery/dist/jquery.min.js"></script>
   <script type="text/javascript" src="/components/material-design-lite/material.min.js"></script>

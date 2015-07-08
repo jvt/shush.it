@@ -1,3 +1,30 @@
+$footerHeight: 100px;
+
+html, body {
+  height:100%;
+}
+
+.mdl-layout__container {
+  position: initial !important;
+  margin:0 0 0 -$footerHeight;
+}
+
+footer {
+  position:initial !important;
+}
+
+.sticky-footer-wrapper {
+  min-height: 100%;
+  height: auto !important;
+  margin: 0 auto -$footerHeight;
+}
+
+.sticky-footer-push {
+  height: $footerHeight !important;
+  clear: both;
+  overflow: hidden;
+}
+
 .mdl-layout__header, .mdl-layout__tab-bar-button, .mdl-layout__tab-bar {
   background-color:#2E2E2E;
 }
