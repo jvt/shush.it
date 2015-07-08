@@ -19,3 +19,12 @@ The following tools are required to compile/run the shush.it codebase:
 2. Run Grunt/start Grunt watcher by running `grunt` in the main directory
 3. Start the node server with `npm start`
 4. Profit
+
+---
+
+## How to contribute
+
+* File an issue in the repository, using the bug tracker, describing the contribution you'd like to make. This will help us to get you started on the right foot.
+* Fork the project in your account and create a new branch: your-great-feature.
+* Commit your changes in that branch.
+* Open a pull request, and reference the initial issue in the pull request message.
