@@ -34,3 +34,7 @@ public/components
 
 # Annoying OS X crap
 .DS_STORE
+
+# Grunt-created files
+public/stylesheets
+public/javascripts
