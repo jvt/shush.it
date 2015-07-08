@@ -11,6 +11,7 @@ var path = require('path');
 var session = require('express-session');
 
 var routes = require('./routes/index');
+var routes_auth = require('./routes/auth');
 
 var app = express();
 
@@ -29,8 +30,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', routes);
-
 GLOBAL.config = nconf.argv().env().file({ file: path.join(__dirname, 'config.json') });
 
 GLOBAL.oauth = new OAuth.OAuth(
@@ -48,6 +47,9 @@ app.use(session({
   resave: false,
   saveUninitialized: false
 }));
+
+app.use('/', routes);
+app.use('/auth', routes_auth);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
