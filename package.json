@@ -16,6 +16,7 @@
     "express-handlebars": "^2.0.1",
     "morgan": "~1.5.3",
     "nconf": "^0.7.1",
+    "oauth": "^0.9.13",
     "serve-favicon": "~2.2.1"
   },
   "devDependencies": {
