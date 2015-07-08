@@ -38,3 +38,6 @@ public/components
 # Grunt-created files
 public/stylesheets
 public/javascripts
+
+# SASS-cache
+.sass-cache
