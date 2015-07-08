@@ -6,6 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var exphbs  = require('express-handlebars');
 var nconf = require('nconf');
+var OAuth = require('oauth');
 var path = require('path');
 
 var routes = require('./routes/index');
@@ -30,6 +31,16 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', routes);
 
 GLOBAL.config = nconf.argv().env().file({ file: path.join(__dirname, 'config.json') });
+
+GLOBAL.oauth = new OAuth.OAuth(
+  'https://api.twitter.com/oauth/request_token',
+  'https://api.twitter.com/oauth/access_token',
+  config.get('oauth').twitter.consumerKey,
+  config.get('oauth').twitter.secret,
+  '1.0A',
+  null,
+  'HMAC-SHA1'
+);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
