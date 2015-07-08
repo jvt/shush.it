@@ -1,8 +1,17 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+.mdl-layout__header, .mdl-layout__tab-bar-button, .mdl-layout__tab-bar {
+  background-color:#2E2E2E;
 }
 
-a {
-  color: #00B7FF;
+.mdl-layout__header {
+  padding:20px 0 0;
+  min-height: 64px;
+}
+
+.mdl-layout__header > .mdl-layout__header-row > h3  {
+  margin:20px 0 20px 0;
+  padding:22px 0 0;
+}
+
+.mdl-layout__header > .mdl-layout__tab-bar-container {
+  margin-top: 35px;
 }
