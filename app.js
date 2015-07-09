@@ -9,9 +9,10 @@ var OAuth        = require('oauth');
 var path         = require('path');
 var favicon      = require('serve-favicon');
 
-var routes      = require('./routes/index');
-var routes_auth = require('./routes/auth');
-var routes_top  = require('./routes/top');
+var routes        = require('./routes/index');
+var routes_auth   = require('./routes/auth');
+var routes_search = require('./routes/search');
+var routes_top    = require('./routes/top');
 
 var app = express();
 
@@ -56,6 +57,7 @@ app.use(session({
 
 app.use('/', routes);
 app.use('/auth', routes_auth);
+app.use('/search', routes_search);
 app.use('/top', routes_top);
 
 // catch 404 and forward to error handler
