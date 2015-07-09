@@ -11,6 +11,7 @@ var favicon      = require('serve-favicon');
 
 var routes      = require('./routes/index');
 var routes_auth = require('./routes/auth');
+var routes_top  = require('./routes/top');
 
 var app = express();
 
@@ -55,6 +56,7 @@ app.use(session({
 
 app.use('/', routes);
 app.use('/auth', routes_auth);
+app.use('/top', routes_top);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
