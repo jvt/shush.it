@@ -1,7 +1,11 @@
 {
   "oauth": {
     "twitter": {
-     "consumerKey": ""
-   }
- }
+      "consumerKey": "",
+      "secret": ""
+    }
+  },
+  "session": {
+    "secret": ""
+  }
 }
