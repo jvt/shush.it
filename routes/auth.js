@@ -2,6 +2,8 @@ var express = require('express');
 var router = express.Router();
 var sys    = require("util");
 
+var User   = require('../models/user').model;
+
 router.get('/twitter', function(req, res, next) {
   oauth.getOAuthRequestToken(function(error, oauthToken, oauthTokenSecret, results){
     if (error) {
@@ -42,7 +44,30 @@ router.get('/twitter/return', function(req, res, next) {
               data = JSON.parse(data);
               req.session.twitterScreenName = data["screen_name"];
 
-              res.redirect("/");
+              // Check if the user already has an account
+              new User({
+                id: data["id"]
+              }).fetch().then(function(storedUser) {
+                if (storedUser == undefined) {
+                  new User({
+                    twitter_id: data["id"],
+                    twitter_screenname: data["screen_name"]
+                  }).save().then(function(createdUser) {
+                    req.session.userID = createdUser.get("id");
+                  });
+                } else {
+                  req.session.userID = createdUser.get("id");
+
+                  // Is the stored username correct?
+                  if (createdUser.get("twitter_screenname") !== data["screen_name"]){
+                    customer.set({
+                      twitter_screenname: data["screen_name"]
+                    });
+                  }
+                }
+
+                res.redirect("/");
+              });
             }
           }
         );

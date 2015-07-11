@@ -1,4 +1,10 @@
 {
+  "database": {
+    "host": "",
+    "database": "",
+    "user": "",
+    "password": ""
+  },
   "oauth": {
     "twitter": {
       "consumerKey": "",
