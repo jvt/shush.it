@@ -1,5 +1,9 @@
 'use strict';
 
+var path = require('path');
+var nconf = require('nconf');
+var config = nconf.argv().env().file({ file: path.join(__dirname, 'config.json') });
+
 /**
  * Grunt Module
  */
@@ -50,6 +54,19 @@ module.exports = function(grunt) {
       }
     },
     /**
+     * Knexmigrate
+     */
+    knexmigrate: {
+      config: {
+        directory: './migrations',
+        tableName: 'knex_migrations',
+        database: {
+          client: 'mysql',
+          connection: config.get('database')
+        }
+      }
+    },
+    /**
      * Watch
      */
     watch: {
@@ -58,7 +75,6 @@ module.exports = function(grunt) {
         tasks: ['sass:dev']
       }
     }
-    
   });
 
   /**
@@ -71,6 +87,7 @@ module.exports = function(grunt) {
    */
   grunt.registerTask('default', [
     'sass:dev',
+    'knexmigrate:latest',
     'watch'
   ]);
 
