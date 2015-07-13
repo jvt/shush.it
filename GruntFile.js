@@ -40,7 +40,8 @@ module.exports = function(grunt) {
           compass: true
         },
         files: {
-          'public/stylesheets/style.css': '<%= project.assets%>/src/scss/style.scss'
+          'public/stylesheets/style.css': '<%= project.assets%>/src/scss/style.scss',
+          'public/stylesheets/materialize.css': '<%= project.assets%>/src/scss/materialize.scss'
         }
       },
       dist: {
@@ -49,7 +50,8 @@ module.exports = function(grunt) {
           compass: true
         },
         files: {
-          'public/stylesheets/style.css': '<%= project.assets%>/src/scss/style.scss'
+          'public/stylesheets/style.css': '<%= project.assets%>/src/scss/style.scss',
+          'public/stylesheets/materialize.css': '<%= project.assets%>/src/scss/materialize.scss'
         }
       }
     },
