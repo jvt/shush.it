@@ -3,21 +3,18 @@
 <head>
   <meta charset="utf-8" />
   <title>Shush.it</title>
-  <link rel="stylesheet" href="/components/material-design-lite/material.min.css">
+  <link rel="stylesheet" href="/stylesheets/materialize.css">
   <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
   <link rel="stylesheet" href="/stylesheets/style.css"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
-<body class="mdl-color--grey-100 mdl-color-text--grey-700 mdl-base">
-    <div class="sticky-footer-wrapper mdl-layout mdl-js-layout mdl-layout--fixed-header">
-      {{> navigation }} 
-      <main class="mdl-layout__content">
-        {{{ body }}}
-        {{!-- <div class="sticky-footer-push"></div> --}}
-      </main>
-    </div>
-    {{> footer }}
-  
+<body class="light-blue lighten-2">
+  {{> navigation }}
+
+  {{{ body }}}
+
+  {{> footer }}
   <script type="text/javascript" src="/components/jquery/dist/jquery.min.js"></script>
-  <script type="text/javascript" src="/components/material-design-lite/material.min.js"></script>
+  <script type="text/javascript" src="/components/materialize/dist/js/materialize.min.js"></script>
 </body>
 </html>
