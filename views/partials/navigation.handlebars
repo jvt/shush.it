@@ -1,21 +1,15 @@
-<header class="mdl-layout__header">
-	<div class="mdl-layout__header-row">
-		<h3>Shush.it</h3>
-    <div class="mdl-layout-spacer"></div>
-    <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable mdl-textfield--floating-label mdl-textfield--align-right">
-      <label class="mdl-button mdl-js-button mdl-button--icon" for="fixed-header-drawer-exp">
-        <i class="material-icons">search</i>
-      </label>
-      <div class="mdl-textfield__expandable-holder">
-        <form action="/search" method="GET">
-          <input class="mdl-textfield__input" type="text" name="q" id="fixed-header-drawer-exp" />
+<nav>
+  <div class="nav-wrapper">
+    <a href="/" class="brand-logo">Shush.it</a>
+    <ul class="right hide-on-med-and-down">
+      <li>
+        <form method="GET" action="/search">
+          <div class="input-field">
+            <input id="search" type="search" required="true" name="q">
+            <label for="search"><i class="material-icons light-blue-text text-lighten-2">search</i></label>
+          </div>
         </form>
-      </div>
-    </div>
+      </li>
+    </ul>
   </div>
-  <div class="mdl-layout__tab-bar mdl-js-ripple-effect">
-    <a href="/" class="mdl-layout__tab is-active">Home</a>
-    <a href="/top" class="mdl-layout__tab">Top Filters</a>
-    <a href="/about" class="mdl-layout__tab">About</a>
-  </div>
-</header>
+</nav>
