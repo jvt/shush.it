@@ -9,6 +9,7 @@ var nconf        = require('nconf');
 var OAuth        = require('oauth');
 var path         = require('path');
 var favicon      = require('serve-favicon');
+var KnexSessionStore = require('connect-session-knex')(session);
 
 var knexfile = require('./knexfile');
 
@@ -51,10 +52,19 @@ GLOBAL.oauth = new OAuth.OAuth(
   'HMAC-SHA1'
 );
 
+var session_store = new KnexSessionStore({
+  knex: knex,
+  tablename: 'sessions' // optional. Defaults to 'sessions'
+});
+
 app.use(session({
+  cookie: {
+    maxAge: 1209600
+  },
   secret: config.get('session').secret,
   resave: false,
-  saveUninitialized: false
+  saveUninitialized: false,
+  store: session_store
 }));
 
 var routes        = require('./routes/index');
