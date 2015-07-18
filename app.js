@@ -67,13 +67,17 @@ app.use(session({
   store: session_store
 }));
 
-var routes        = require('./routes/index');
-var routes_auth   = require('./routes/auth');
-var routes_search = require('./routes/search');
-var routes_top    = require('./routes/top');
+var routes         = require('./routes/index');
+var routes_auth    = require('./routes/auth');
+var routes_filter  = require('./routes/filter');
+var routes_install = require('./routes/install');
+var routes_search  = require('./routes/search');
+var routes_top     = require('./routes/top');
 
 app.use('/', routes);
 app.use('/auth', routes_auth);
+app.use('/filter', routes_filter);
+app.use('/install', routes_install);
 app.use('/search', routes_search);
 app.use('/top', routes_top);
 
