@@ -10,9 +10,8 @@ router.get('/:id/', function(req, res, next) {
 		.fetch()
 		.then(function(model)
 		{
-			console.log(model);
+			res.render('filter', { title: 'Filter', filter: model.attributes });
 		});
-	res.render('filter', { title: 'Filter', filterID: filterID });
 });
 
 module.exports = router;
