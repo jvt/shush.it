@@ -16,3 +16,21 @@ nav ul li:hover, nav ul li.active {
 nav > .nav-wrapper {
 	padding:0 0 0 30px;
 }
+
+a.btn-large.si-overwrite-br {
+	border-radius:55.5px !important;
+}
+
+$animationSpeed: .15s;
+
+a.btn-large.add-to-tweetbot {
+	-o-transition:width $animationSpeed ease;
+	-ms-transition:width $animationSpeed ease;
+	-moz-transition:width $animationSpeed ease;
+	-webkit-transition:width $animationSpeed ease;
+	transition:width $animationSpeed ease;
+}
+
+a.btn-large.add-to-tweetbot:hover {
+	width:200px !important;
+}
