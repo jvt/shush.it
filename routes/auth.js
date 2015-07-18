@@ -79,7 +79,7 @@ router.get('/twitter/return', function(req, res, next) {
 router.get('/destroy', function(req, res, next) {
   req.session.destroy(function(err) {
     res.redirect("/");
-  })
+  });
 });
 
 module.exports = router;
