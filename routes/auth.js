@@ -50,8 +50,9 @@ router.get('/twitter/return', function(req, res, next) {
               }).fetch().then(function(storedUser) {
                 if (storedUser == undefined) {
                   new User({
-                    twitter_id: data['id'],
-                    twitter_screenname: data['screen_name']
+                    twitter_id: data["id"],
+                    twitter_screenname: data["screen_name"],
+                    twitter_profile_picture: data["profile_image_url"]
                   }).save().then(function(createdUser) {
                     req.session.userID = createdUser.get('id');
                   });
@@ -60,9 +61,12 @@ router.get('/twitter/return', function(req, res, next) {
 
                   // Is the stored username correct?
                   if (storedUser.get("twitter_screenname") !== data["screen_name"]){
-                    customer.set({
-                      twitter_screenname: data['screen_name']
-                    });
+                    storedUser.set('twitter_screenname', data["screen_name"]).save();
+                  }
+
+                  // Is the stored profile picture correct?
+                  if (storedUser.get("twitter_profile_picture") !== data["profile_image_url"]){
+                    storedUser.set('twitter_profile_picture', data["profile_image_url"]).save();
                   }
                 }
 
