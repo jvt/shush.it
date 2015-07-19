@@ -1,7 +1,7 @@
 var bookshelf = require('bookshelf').DB;
 
-var Filter = require("./filter").model;
-var User = require("./user").model;
+var Filter = require('./filter').model;
+var User = require('./user').model;
 
 exports.model = bookshelf.Model.extend({
   tableName: 'filters',

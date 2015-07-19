@@ -1,6 +1,6 @@
 var bookshelf = require('bookshelf').DB;
 
-var User = require("./user").model;
+var User = require('./user').model;
 
 exports.model = bookshelf.Model.extend({
   tableName: 'filters',
