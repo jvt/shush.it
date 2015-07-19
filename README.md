@@ -29,3 +29,13 @@ The following tools are required to compile/run the shush.it codebase:
 * Fork the project in your account and create a new branch: your-great-feature.
 * Commit your changes in that branch.
 * Open a pull request, and reference the initial issue in the pull request message.
+
+## Code Style Guide
+
+* All code **must** use two spaces for indenting. Tabs **must not** be used for indenting.
+* All JavaScript **must**:
+  * Be written using the [One True Brace](https://en.wikipedia.org/wiki/Indent_style#Variant:_1TBS) style.
+  * Use single quotes for strings.
+  * Use [camelCase](https://en.wikipedia.org/wiki/CamelCase) for variable and function names.
+* All HTML **must**:
+  * Use double quotes for strings.
