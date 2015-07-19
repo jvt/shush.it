@@ -4,12 +4,11 @@ $(document).ready(function()
   {
     var button = $(this);
     button.addClass('disabled installed no-hover');
-    // $(this).find('i').remove();
     button
       .find('i')
       .css('position', 'relative')
       .animate({
-        top: '-35px'
+        top: '-40px'
       }, 400, function()
       {
         setTimeout(function()
@@ -21,9 +20,26 @@ $(document).ready(function()
             }, 400);
         }, 1000);
       });
-    button.append('<p style="position:relative;top:0px;">Added to Tweetbot</p>');
     button
-      .find('p')
+      .find('span p')
+      .animate({
+        top: '-40px'
+      }, 400, function()
+      {
+        setTimeout(function()
+        {
+          button
+            .find('span p')
+            .animate({
+              top: '-6px'
+            }, 400);
+        }, 1000);
+      });
+
+
+    button.append('<p class="addedToTweetbot" style="position:relative;top:0px;">Added to Tweetbot</p>');
+    button
+      .find('p.addedToTweetbot')
       .animate({
         top: '-63px',
       }, 400, function()
@@ -31,12 +47,13 @@ $(document).ready(function()
         setTimeout(function()
         {
           button
-            .find('p')
+            .find('p.addedToTweetbot')
             .animate({
               top: '0'
             }, 400, function()
             {
               button.removeClass('disabled installed no-hover');
+              button.find('p.addedToTweetbot').remove();
             });
         }, 1000);
       });
