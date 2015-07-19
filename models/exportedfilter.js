@@ -4,7 +4,7 @@ var Filter = require('./filter').model;
 var User = require('./user').model;
 
 exports.model = bookshelf.Model.extend({
-  tableName: 'filters',
+  tableName: 'filter_export_log',
   hasTimestamps: true,
 
   exportedBy: function() {
