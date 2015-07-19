@@ -20,6 +20,7 @@
   ],
   "dependencies": {
     "jquery": "~2.1.4",
-    "materialize": "~0.97.0"
+    "materialize": "~0.97.0",
+    "font-awesome": "~4.3.0"
   }
 }

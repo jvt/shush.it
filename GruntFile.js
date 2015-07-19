@@ -41,7 +41,8 @@ module.exports = function(grunt) {
         },
         files: {
           'public/stylesheets/style.css': '<%= project.assets%>/src/scss/style.scss',
-          'public/stylesheets/materialize.css': '<%= project.assets%>/src/scss/materialize.scss'
+          'public/stylesheets/materialize.css': '<%= project.assets%>/src/scss/materialize.scss',
+          'public/stylesheets/fontawesome.css': 'public/components/font-awesome/scss/font-awesome.scss'
         }
       },
       dist: {
@@ -51,7 +52,8 @@ module.exports = function(grunt) {
         },
         files: {
           'public/stylesheets/style.css': '<%= project.assets%>/src/scss/style.scss',
-          'public/stylesheets/materialize.css': 'public/components/materialize/sass/materialize.scss'
+          'public/stylesheets/materialize.css': '<%= project.assets%>/src/scss/materialize.scss',
+          'public/stylesheets/fontawesome.css': 'public/components/font-awesome/scss/font-awesome.scss'
         }
       }
     },
