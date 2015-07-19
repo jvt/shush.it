@@ -1,36 +1,36 @@
 body {
-	display: flex;
-	min-height: 100vh;
-	flex-direction: column;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
 }
 
 main {
-	padding:30px 0 0 0;
-	flex: 1 0 auto;
+  padding:30px 0 0 0;
+  flex: 1 0 auto;
 }
 
 nav ul li:hover, nav ul li.active {
-	background-color:rgba(0,0,0,0) !important;
+  background-color:rgba(0,0,0,0) !important;
 }
 
 nav > .nav-wrapper {
-	padding:0 0 0 30px;
+  padding:0 0 0 30px;
 }
 
 a.btn-large.si-overwrite-br {
-	border-radius:55.5px !important;
+  border-radius:55.5px !important;
 }
 
 $animationSpeed: .15s;
 
 a.btn-large.add-to-tweetbot {
-	-o-transition:width $animationSpeed ease;
-	-ms-transition:width $animationSpeed ease;
-	-moz-transition:width $animationSpeed ease;
-	-webkit-transition:width $animationSpeed ease;
-	transition:width $animationSpeed ease;
+  -o-transition:width $animationSpeed ease;
+  -ms-transition:width $animationSpeed ease;
+  -moz-transition:width $animationSpeed ease;
+  -webkit-transition:width $animationSpeed ease;
+  transition:width $animationSpeed ease;
 }
 
 a.btn-large.add-to-tweetbot:hover {
-	width:200px !important;
+  width:200px !important;
 }
