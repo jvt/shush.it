@@ -7,33 +7,33 @@ var config = nconf.argv().env().file({ file: path.join(__dirname, 'config.json')
 /**
  * Grunt Module
  */
-module.exports = function(grunt) {
+ module.exports = function(grunt) {
   /**
    * Configuration
    */
-  grunt.initConfig({
+   grunt.initConfig({
     /**
      * Get package meta data
      */
-    pkg: grunt.file.readJSON('package.json'),
+     pkg: grunt.file.readJSON('package.json'),
     /**
      * Set project object
      */
-    project: {
+     project: {
       app: 'app',
       assets: '<%= project.app %>/assets',
       src: '<%= project.assets %>/src',
       css: [
-        '<%= project.src %>/scss/style.scss'
+      '<%= project.src %>/scss/style.scss'
       ],
       js: [
-        '<%= project.src %>/js/*.js'
+      '<%= project.src %>/js/*.js'
       ]
     },
     /**
      * Sass
      */
-    sass: {
+     sass: {
       dev: {
         options: {
           style: 'expanded',
@@ -60,7 +60,7 @@ module.exports = function(grunt) {
     /**
      * Knexmigrate
      */
-    knexmigrate: {
+     knexmigrate: {
       config: {
         directory: './migrations',
         tableName: 'knex_migrations',
@@ -71,28 +71,44 @@ module.exports = function(grunt) {
       }
     },
     /**
+     * Minify Javascript files
+     */
+     minified : {
+      files: {
+        src: [
+          '<%= project.assets%>/src/js/global.js',
+        ],
+        dest: 'public/javascripts/'
+      },
+      options : {
+        sourcemap: false,
+        allinone: false
+      }
+    },
+    /**
      * Watch
      */
-    watch: {
+     watch: {
       sass: {
-        files: '<%= project.src %>/scss/{,*/}*.{scss,sass}',
-        tasks: ['sass:dev']
-      }
+      files: '<%= project.src %>/scss/{,*/}*.{scss,sass}',
+      tasks: ['sass:dev']
     }
-  });
+  }
+});
 
   /**
    * Load Grunt plugins
    */
-  require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
+   require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
   /**
    * Default task
    * Run `grunt` on the command line
    */
-  grunt.registerTask('default', [
+   grunt.registerTask('default', [
     'sass:dev',
     'knexmigrate:latest',
+    'minified',
     'watch'
-  ]);
+    ]);
 
-};
+ };
