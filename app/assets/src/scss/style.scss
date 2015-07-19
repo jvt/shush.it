@@ -39,4 +39,37 @@ a.btn-large.add-to-tweetbot:not(.no-hover):hover {
   width:200px !important;
 }
 
+.UITweetBox {
+  padding-left: 20px;
+  padding-right: 20px;
+  min-height: 48px;
+  margin-bottom: 20px;
+  color: #03a9f4;
+  display: block;
+  width: 100%;
+}
 
+.UITweetBox img {
+  float: left;
+  width: 48px;
+}
+
+.UITweetBox .UITweetContent {
+  display: block;
+  margin-left: 60px;
+}
+
+.UITweetBox .UITweetContent .UITweetPoster {
+  font-weight: bold;
+}
+
+.UIFilteredTweet {
+  background-image: url('/images/filteredtweetstripes.png');
+  opacity: 0.7;
+  color: #999999;
+}
+
+.UIFilteredTweet img {
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);
+}
