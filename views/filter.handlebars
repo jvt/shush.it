@@ -4,7 +4,9 @@
       <div class="card blue-grey darken-1">
         <div class="card-content white-text">
           <span class="card-title">{{ filter.title }}</span>
-          <a href="/install/{{ filter.id }}/" class="btn-floating btn-large waves-effect waves-dark white right si-overwrite-br add-to-tweetbot"><i class="light-blue-text text-lighten-2 material-icons">add</i></a>
+          <a href="/install/{{ filter.id }}/" class="btn-floating btn-large waves-effect waves-dark white right si-overwrite-br add-to-tweetbot install-button">
+            <i class="light-blue-text text-lighten-2 material-icons" style="width:auto !important;">add</i>
+          </a>
         </div>
       </div>
     </div>
@@ -41,7 +43,7 @@
     <div class="col s12 m6">
       <div class="card white">
         <div class="card-action">
-          <a href="/install/{{ filter.id }}/" class="waves-effect waves-light">Install to Tweetbot</a>
+          <a href="/install/{{ filter.id }}/" class="waves-effect waves-light install-button">Install to Tweetbot</a>
         </div>
       </div>
     </div>

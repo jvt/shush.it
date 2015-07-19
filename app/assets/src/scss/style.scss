@@ -31,6 +31,12 @@ a.btn-large.add-to-tweetbot {
   transition:width $animationSpeed ease;
 }
 
-a.btn-large.add-to-tweetbot:hover {
+a.btn-large.add-to-tweetbot.installed {
+   width:200px !important;
+}
+
+a.btn-large.add-to-tweetbot:not(.no-hover):hover {
   width:200px !important;
 }
+
+
