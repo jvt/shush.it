@@ -46,7 +46,7 @@ router.get('/twitter/return', function(req, res, next) {
 
               // Check if the user already has an account
               new User({
-                id: data['id']
+                twitter_id: data["id"]
               }).fetch().then(function(storedUser) {
                 if (storedUser == undefined) {
                   new User({
@@ -56,10 +56,10 @@ router.get('/twitter/return', function(req, res, next) {
                     req.session.userID = createdUser.get('id');
                   });
                 } else {
-                  req.session.userID = createdUser.get('id');
+                  req.session.userID = storedUser.get("id");
 
                   // Is the stored username correct?
-                  if (createdUser.get('twitter_screenname') !== data['screen_name']){
+                  if (storedUser.get("twitter_screenname") !== data["screen_name"]){
                     customer.set({
                       twitter_screenname: data['screen_name']
                     });
