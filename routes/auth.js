@@ -5,7 +5,7 @@ var sys    = require('util');
 var User   = require('../models/user').model;
 
 router.get('/twitter', function(req, res, next) {
-  oauth.getOAuthRequestToken(function(error, oauthToken, oauthTokenSecret, results){
+  oauth.getOAuthRequestToken({'oauth_callback': config.get('url') + '/auth/twitter/return'}, function(error, oauthToken, oauthTokenSecret, results){
     if (error) {
       res.send('Error getting OAuth request token : ' + sys.inspect(error), 500);
     } else {
