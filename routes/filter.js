@@ -3,15 +3,38 @@ var router = express.Router();
 
 var Filter   = require('../models/filter').model;
 
+router.get('/new/', function(req, res, next)
+{
+	if (req.session.userID) {
+		res.render('filter/new', { title: 'Add a Filter' });
+	} else {
+		res.redirect('/');
+	}
+});
+
+router.post('/new/', function(req, res, next) {
+  new Filter({
+    owner: req.session.userID,
+    title: req.body.filterName,
+    description: req.body.filterDescription,
+    type: req.body.filterType,
+    pattern: req.body.filterContent
+  }).save().then(function(newFilter) {
+    res.redirect('/filter/' + newFilter.attributes.id + '/');
+  });
+
+  // res.redirect('filter/new', { title: 'Filter', error: "Test" });
+});
+
 /* GET filter page. */
 router.get('/:id/', function(req, res, next) {
   var filterID = req.params.id;
   new Filter({'id': filterID})
-    .fetch()
-    .then(function(model)
-    {
-      res.render('filter', { title: 'Filter', filter: model.attributes });
-    });
+  .fetch()
+  .then(function(model)
+  {
+    res.render('filter', { title: 'Filter', filter: model.attributes });
+  });
 });
 
 router.get('/:id/preview', function(req, res, next) {
@@ -44,7 +67,7 @@ router.get('/:id/preview', function(req, res, next) {
 
         res.render('filter_preview', { title: 'Filter', filter: model.attributes, tweets: tweets });
       }
-    );
+      );
   });
 });
 
