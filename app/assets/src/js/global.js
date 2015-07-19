@@ -1,5 +1,5 @@
-$(document).ready(function()
-{
+$(document).ready(function() {
+  $(".button-collapse").sideNav();
   $('.install-button').on('click', function(event)
   {
     var button = $(this);
