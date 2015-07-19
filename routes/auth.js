@@ -43,6 +43,7 @@ router.get('/twitter/return', function(req, res, next) {
             } else {
               data = JSON.parse(data);
               req.session.twitterScreenName = data['screen_name'];
+              req.session.twitterProfilePicture = data["profile_image_url"].replace('_normal', '_bigger');
 
               // Check if the user already has an account
               new User({

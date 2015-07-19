@@ -1,3 +1,6 @@
+<ul id="userdropdown" class="dropdown-content">
+  <li><a href="/auth/destroy">Logout</a></li>
+</ul>
 <nav>
   <div class="nav-wrapper" style="overflow:hidden;">
     <a href="/" class="brand-logo waves-effect waves-default">Shush.it</a>
@@ -6,6 +9,14 @@
       {{#unless session.userID}}
       <li><a href="/auth/twitter" class="waves-effect waves-default">Login with Twitter</a></li>
       {{/unless}}
+      {{#if session.userID}}
+      <li class="valign-wrapper">
+        <img src="{{ session.twitterProfilePicture }}" id="UIUserPhoto" class="circle valign" />
+        <a class="dropdown-button" href="#!" data-activates="userdropdown">
+          @{{session.twitterScreenName}} <i class="material-icons right">arrow_drop_down</i>
+        </a>
+      </li>
+      {{/if}}
       <li>
         <form method="GET" action="/search">
           <div class="input-field waves-effect waves-default">

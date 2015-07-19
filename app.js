@@ -67,6 +67,11 @@ app.use(session({
   store: session_store
 }));
 
+app.use(function(req,res,next){
+    res.locals.session = req.session;
+    next();
+})
+
 var routes         = require('./routes/index');
 var routes_auth    = require('./routes/auth');
 var routes_filter  = require('./routes/filter');
