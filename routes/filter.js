@@ -49,6 +49,12 @@ router.get('/:id/', function(req, res, next) {
     withRelated: ['owner']
   })
   .then(function(model) {
+    if (!model) {
+      var err = new Error();
+      err.status = 404;
+      err.message = 'Looks like you\'ve either navigated to a page that doesn\'t exist or you followed a broken link to get here';
+      next(err);
+    }
     if (req.session.userID && req.session.userID == model.related('owner').toJSON().id) {
       res.render('filter', { title: 'Filter', filter: model.attributes, owner: model.related('owner').toJSON(), csrf: req.csrfToken(), createdByUser: true });
     } else {
