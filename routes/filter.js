@@ -19,7 +19,17 @@ router.post('/new/', function(req, res, next) {
     description: req.body.filterDescription,
     type: req.body.filterType,
     pattern: req.body.filterContent
-  }).save().then(function(newFilter) {
+  }).save()
+  .catch(function(errors)
+  {
+    console.log(errors);
+    errors.forEach(function(error)
+    {
+      req.flash('error', ' ' + error.message);
+    });
+    res.redirect('back');
+  })
+  .then(function(newFilter) {
     if (newFilter) {
       req.flash('success', 'Successfully saved your new filter');
       res.redirect('/filter/' + newFilter.attributes.id + '/');

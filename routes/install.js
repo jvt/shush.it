@@ -17,7 +17,11 @@ router.get('/:id/', function(req, res, next) {
         new exFilter({
           user: req.session.userID,
           filter: filterID
-        }).save();
+        }).save()
+        .catch(function() {
+          req.flash('error', 'There was an error attempting to install that filter');
+          res.redirect('back');   
+        });
       }
     });
   }
