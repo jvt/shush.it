@@ -9,7 +9,7 @@ router.get('/', function(req, res, next) {
     qb.select('filter')
       .count('filter as filter_occurence')
       .groupBy('filter')
-      .orderBy('filter_occurence')
+      .orderBy('filter_occurence', 'desc')
       .limit(10);
   }).fetch({
     withRelated: ['filter']
