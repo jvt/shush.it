@@ -10,7 +10,7 @@ The following tools are required to compile/run the shush.it codebase:
 * Grunt
 * MySQL Database
 
-
+## Local Installation
 
 1. Duplicate the `config.example.json` file calling it `config.json` and enter your Twitter authentication credentials and MySQL credentials
 2. Ensure your MySQL server is running
