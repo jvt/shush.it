@@ -92,8 +92,9 @@ app.use('/top', routes_top);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  var err = new Error('Not Found');
+  var err = new Error();
   err.status = 404;
+  err.message = 'Looks like you\'ve either navigated to a page that doesn\'t exist or you followed a broken link to get here';   
   next(err);
 });
 
