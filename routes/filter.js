@@ -8,6 +8,7 @@ router.get('/new/', function(req, res, next)
 	if (req.session.userID) {
 		res.render('filter/new', { title: 'Add a Filter' });
 	} else {
+    req.flash('error', 'You must be logged in with Twitter to submit a filter.');
 		res.redirect('/');
 	}
 });
