@@ -1,6 +1,7 @@
 var bookshelf    = require('bookshelf');
 var bodyParser   = require('body-parser');
 var cookieParser = require('cookie-parser');
+var csrf         = require('csurf');
 var express      = require('express');
 var exphbs       = require('express-handlebars');
 var flash        = require('express-flash');
@@ -11,6 +12,8 @@ var OAuth        = require('oauth');
 var path         = require('path');
 var favicon      = require('serve-favicon');
 var KnexSessionStore = require('connect-session-knex')(session);
+
+GLOBAL.config = nconf.argv().env().file({ file: path.join(__dirname, 'config.json') });
 
 var knexfile = require('./knexfile');
 
@@ -26,6 +29,16 @@ var hbs = exphbs.create({
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 
+app.use(session({
+  cookie: {
+    maxAge: 1209600
+  },
+  secret: config.get('session').secret,
+  resave: false,
+  saveUninitialized: false,
+  store: session_store
+}));
+
 // uncomment when shipping into production
 //app.enable('view cache');
 
@@ -37,8 +50,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(flash());
-
-GLOBAL.config = nconf.argv().env().file({ file: path.join(__dirname, 'config.json') });
+app.use(csrf());
 
 var knex = require('knex')(knexfile);
 
@@ -58,16 +70,6 @@ var session_store = new KnexSessionStore({
   knex: knex,
   tablename: 'sessions' // optional. Defaults to 'sessions'
 });
-
-app.use(session({
-  cookie: {
-    maxAge: 1209600
-  },
-  secret: config.get('session').secret,
-  resave: false,
-  saveUninitialized: false,
-  store: session_store
-}));
 
 app.use(function(req,res,next){
     res.locals.session = req.session;
