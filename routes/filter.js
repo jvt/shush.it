@@ -3,6 +3,7 @@ var router = express.Router();
 
 var Filter   = require('../models/filter').model;
 var exFilter = require('../models/exportedFilter').model;
+var exFilterCollection = require('../models/exportedFilter').collection;
 
 String.prototype.capitalizeFirstLetter = function() {
     return this.charAt(0).toUpperCase() + this.slice(1);
@@ -60,7 +61,7 @@ router.get('/:id/', function(req, res, next) {
       next(err);
     }
     if (req.session.userID && req.session.userID == model.related('owner').toJSON().id) {
-      res.render('filter', { title: 'Filter', filter: model.attributes, filterType: model.attributes.type.capitalizeFirstLetter(), owner: model.related('owner').toJSON(), csrf: req.csrfToken(), createdByUser: true });
+      res.render('filter', { title: 'Filter', filter: model.attributes, filterType: model.attributes.type.capitalizeFirstLetter(), owner: model.related('owner').toJSON(), csrf: req.csrfToken(), createdByUser: false });
     } else {
       res.render('filter', { title: 'Filter', filter: model.attributes, filterType: model.attributes.type.capitalizeFirstLetter(), owner: model.related('owner').toJSON(), createdByUser: false });
     }
@@ -118,35 +119,34 @@ router.get('/:id/preview', function(req, res, next) {
 });
 
 router.post('/:id/delete/', function(req, res, next) {
-  var filterID = req.params.id;
+  res.redirect('back');
+  // var filterID = req.params.id;
 
-  if (!req.session.userID) {
-    req.flash('error', 'You must be logged in to access that');
-    res.redirect('back');
-    return false;
-  } else {
-    new Filter({id: filterID})
-    .fetch()
-    .then(function(model) {
-      if (model.attributes.owner == req.session.userID) {
-        model.destroy()
-        .then(function() {
-          new exFilter({filter:filterID})
-          .fetch()
-          .then(function(downloadedModel) {
-            downloadedModel.destroy()
-            .then(function() {
-              req.flash('success', 'That filter has been successfully deleted');
-              res.redirect('/');
-            });
-          });
-        });
-      } else {
-        req.flash('error', 'You\'re not authorized to access that');
-        res.redirect('back');
-      }
-    });
-  }
+  // if (!req.session.userID) {
+  //   req.flash('error', 'You must be logged in to access that');
+  //   res.redirect('back');
+  //   return false;
+  // } else {
+  //   new Filter({id: filterID})
+  //   .fetch({'withRelated': [
+  //       'exportLog'
+  //     ]})
+  //   .then(function(model) {
+  //     if (model.attributes.owner == req.session.userID) {
+  //       model.destroy()
+  //       .then(function() {
+  //         model.related('exportLog').forEach(function(downloadedModel) {
+  //           downloadedModel.destroy();
+  //         });
+  //         req.flash('success', 'That filter has been successfully deleted');
+  //         res.redirect('/');
+  //       });
+  //     } else {
+  //       req.flash('error', 'You\'re not authorized to access that');
+  //       res.redirect('back');
+  //     }
+  //   });
+  // }
 });
 
 module.exports = router;
