@@ -5,7 +5,7 @@ var Filter   = require('../models/filter').model;
 
 router.get('/new/', function(req, res, next) {
   if (req.session.userID) {
-    res.render('filter/new', { title: 'Add a Filter' });
+    res.render('filter/new', { title: 'Add a Filter', csrf: req.csrfToken() });
   } else {
     req.flash('error', 'You must be logged in with Twitter to submit a filter.');
     res.redirect('/');
@@ -49,7 +49,11 @@ router.get('/:id/', function(req, res, next) {
     withRelated: ['owner']
   })
   .then(function(model) {
-    res.render('filter', { title: 'Filter', filter: model.attributes, owner: model.related('owner').toJSON() });
+    if (req.session.userID && req.session.userID == model.related('owner').toJSON().id) {
+      res.render('filter', { title: 'Filter', filter: model.attributes, owner: model.related('owner').toJSON(), csrf: req.csrfToken(), createdByUser: true });
+    } else {
+      res.render('filter', { title: 'Filter', filter: model.attributes, owner: model.related('owner').toJSON(), createdByUser: false });
+    }
   });
 });
 
@@ -85,6 +89,31 @@ router.get('/:id/preview', function(req, res, next) {
       }
       );
   });
+});
+
+router.post('/:id/delete/', function(req, res, next) {
+  var filterID = req.params.id;
+
+  if (!req.session.userID) {
+    req.flash('error', 'You must be logged in to access that');
+    res.redirect('back');
+    return false;
+  } else {
+    new Filter({id: filterID})
+    .fetch()
+    .then(function(model) {
+      if (model.attributes.owner == req.session.userID) {
+        model.destroy()
+        .then(function() {
+          req.flash('success', 'That filter has been successfully deleted');
+          res.redirect('/');
+        });
+      } else {
+        req.flash('error', 'You\'re not authorized to access that');
+        res.redirect('back');        
+      }
+    });
+  }
 });
 
 module.exports = router;
