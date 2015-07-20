@@ -1,6 +1,9 @@
+{{#if session.userID}}
 <ul id="userdropdown" class="dropdown-content">
+  <li><a href="/{{session.twitterScreenName}}/" class="blue-text text-lighten-2">My filters</a></li>
   <li><a href="/auth/destroy" class="blue-text text-lighten-2">Logout</a></li>
 </ul>
+{{/if}}
 <nav>
   <div class="nav-wrapper">
     <a href="/" class="brand-logo waves-effect waves-default">Shush.it</a>
