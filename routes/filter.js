@@ -23,7 +23,6 @@ router.post('/new/', function(req, res, next) {
   }).save()
   .catch(function(errors)
   {
-    console.log(errors);
     errors.forEach(function(error)
     {
       req.flash('error', ' ' + error.message);
