@@ -3,6 +3,7 @@ var bodyParser   = require('body-parser');
 var cookieParser = require('cookie-parser');
 var express      = require('express');
 var exphbs       = require('express-handlebars');
+var flash        = require('express-flash');
 var session      = require('express-session');
 var logger       = require('morgan');
 var nconf        = require('nconf');
@@ -35,6 +36,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(flash());
 
 GLOBAL.config = nconf.argv().env().file({ file: path.join(__dirname, 'config.json') });
 

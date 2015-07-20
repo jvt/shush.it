@@ -21,9 +21,12 @@ router.post('/new/', function(req, res, next) {
     pattern: req.body.filterContent
   }).save().then(function(newFilter) {
     if (newFilter) {
+      req.flash('success', 'Successfully saved your new filter');
       res.redirect('/filter/' + newFilter.attributes.id + '/');
     } else {
       // 500-Internal Server error
+      req.flash('error', 'Whoops looks like there was an error saving that.');
+      res.redirect('back');
     }
   });
 });
