@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 var Filter   = require('../models/filter').model;
+var exFilter = require('../models/exportedFilter').model;
 
 router.get('/new/', function(req, res, next) {
   if (req.session.userID) {
@@ -111,8 +112,15 @@ router.post('/:id/delete/', function(req, res, next) {
       if (model.attributes.owner == req.session.userID) {
         model.destroy()
         .then(function() {
-          req.flash('success', 'That filter has been successfully deleted');
-          res.redirect('/');
+          new exFilter({filter:filterID})
+          .fetch()
+          .then(function(downloadedModel) {
+            downloadedModel.destroy()
+            .then(function() {
+              req.flash('success', 'That filter has been successfully deleted');
+              res.redirect('/');
+            });
+          });
         });
       } else {
         req.flash('error', 'You\'re not authorized to access that');
