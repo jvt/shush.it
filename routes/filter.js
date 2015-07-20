@@ -35,10 +35,11 @@ router.post('/new/', function(req, res, next) {
 router.get('/:id/', function(req, res, next) {
   var filterID = req.params.id;
   new Filter({'id': filterID})
-  .fetch()
-  .then(function(model)
-  {
-    res.render('filter', { title: 'Filter', filter: model.attributes });
+  .fetch({
+    withRelated: ['owner']
+  })
+  .then(function(model) {
+    res.render('filter', { title: 'Filter', filter: model.attributes, owner: model.related('owner').toJSON() });
   });
 });
 
