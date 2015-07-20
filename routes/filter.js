@@ -94,8 +94,6 @@ router.get('/:id/preview', function(req, res, next) {
           return false;
         }
 
-        console.log(data);
-
         var tweets = [];
 
         for (var i = 0; i < data.length; i++) {
