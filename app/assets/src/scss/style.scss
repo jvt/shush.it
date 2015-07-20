@@ -18,18 +18,10 @@ nav > .nav-wrapper {
   .brand-logo {
     padding:0 20px;
   }
+  ul li img {
+    width: 48px;
+  }
   .side-nav li {
-    // form {
-    //   .input-field {
-    //     height:64px !important;
-    //   }
-    //   label {
-    //     height:64px !important;
-    //   }
-    //   input {
-    //     height: 64px !important;
-    //   }
-    // }
     p {
       line-height: 64px;
     }
@@ -56,10 +48,6 @@ a.btn-large.add-to-tweetbot.installed {
 
 a.btn-large.add-to-tweetbot:not(.no-hover):hover {
   width:200px !important;
-}
-
-#UIUserPhoto {
-  width: 48px;
 }
 
 .UITweetBox {
