@@ -4,6 +4,10 @@ var router = express.Router();
 var Filter   = require('../models/filter').model;
 var exFilter = require('../models/exportedFilter').model;
 
+String.prototype.capitalizeFirstLetter = function() {
+    return this.charAt(0).toUpperCase() + this.slice(1);
+}
+
 router.get('/new/', function(req, res, next) {
   if (req.session.userID) {
     res.render('filter/new', { title: 'Add a Filter', csrf: req.csrfToken() });
@@ -56,9 +60,9 @@ router.get('/:id/', function(req, res, next) {
       next(err);
     }
     if (req.session.userID && req.session.userID == model.related('owner').toJSON().id) {
-      res.render('filter', { title: 'Filter', filter: model.attributes, owner: model.related('owner').toJSON(), csrf: req.csrfToken(), createdByUser: true });
+      res.render('filter', { title: 'Filter', filter: model.attributes, filterType: model.attributes.type.capitalizeFirstLetter(), owner: model.related('owner').toJSON(), csrf: req.csrfToken(), createdByUser: true });
     } else {
-      res.render('filter', { title: 'Filter', filter: model.attributes, owner: model.related('owner').toJSON(), createdByUser: false });
+      res.render('filter', { title: 'Filter', filter: model.attributes, filterType: model.attributes.type.capitalizeFirstLetter(), owner: model.related('owner').toJSON(), createdByUser: false });
     }
   });
 });
