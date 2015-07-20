@@ -15,6 +15,9 @@ nav ul li:hover, nav ul li.active {
 
 nav > .nav-wrapper {
   padding:0 0 0 30px;
+  .brand-logo {
+    padding:0 20px;
+  }
 }
 
 a.btn-large.si-overwrite-br {
