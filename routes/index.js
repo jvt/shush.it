@@ -56,7 +56,7 @@ router.get('/:twitterScreenName', function(req, res, next) {
         new filter({ owner: userModel.attributes.id })
         .fetchAll()
         .then(function(filtersModel) {
-          res.render('myfilters', { title: 'My filters', filters: filtersModel.toJSON() });
+          res.render('myfilters', { title: 'My filters', filters: filtersModel.toJSON(), numFilters:filtersModel.toJSON().length });
         });
       } else {
         var err = new Error();
