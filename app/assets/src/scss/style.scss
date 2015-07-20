@@ -104,3 +104,16 @@ a.btn-large.add-to-tweetbot:not(.no-hover):hover {
 .dropdown-content {
    margin-top:100px;
 }
+
+@media only screen and (min-width: 0) {
+  .col.s12.margin-bottom {
+    margin-bottom:20px;
+  }
+}
+
+
+@media only screen and (min-width: 601px) {
+  .col.s12.margin-bottom {
+    margin-bottom: 0px;
+  }
+}
