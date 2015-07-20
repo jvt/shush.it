@@ -20,10 +20,12 @@ router.post('/new/', function(req, res, next) {
     type: req.body.filterType,
     pattern: req.body.filterContent
   }).save().then(function(newFilter) {
-    res.redirect('/filter/' + newFilter.attributes.id + '/');
+    if (newFilter) {
+      res.redirect('/filter/' + newFilter.attributes.id + '/');
+    } else {
+      // 500-Internal Server error
+    }
   });
-
-  // res.redirect('filter/new', { title: 'Filter', error: "Test" });
 });
 
 /* GET filter page. */
