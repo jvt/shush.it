@@ -18,6 +18,22 @@ nav > .nav-wrapper {
   .brand-logo {
     padding:0 20px;
   }
+  .side-nav li {
+    // form {
+    //   .input-field {
+    //     height:64px !important;
+    //   }
+    //   label {
+    //     height:64px !important;
+    //   }
+    //   input {
+    //     height: 64px !important;
+    //   }
+    // }
+    p {
+      line-height: 64px;
+    }
+  }
 }
 
 a.btn-large.si-overwrite-br {
