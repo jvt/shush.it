@@ -58,4 +58,9 @@ $(document).ready(function() {
         }, 1000);
       });
   });
+
+  autohideSuccessMessage = function() {
+    $('.flash-message.success').slideUp(400);
+  }
+  setTimeout(autohideSuccessMessage, 2000);
 });
