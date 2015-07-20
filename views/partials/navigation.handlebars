@@ -42,6 +42,7 @@
       <li><a href="/auth/twitter" class="waves-effect waves-default">Login with Twitter</a></li>
       {{/unless}}
       {{#if session.userID}}
+      <li><a href="/{{session.twitterScreenName}}/" class="blue-text text-lighten-2">My filters</a></li>
       <li class="valign-wrapper">
         <img src="{{ session.twitterProfilePicture }}" id="UIUserPhoto" class="circle valign" />
         <p style="padding:0 10px;">@{{session.twitterScreenName}}</p>
