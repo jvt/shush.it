@@ -28,6 +28,11 @@ nav > .nav-wrapper {
   }
 }
 
+.clearfix {
+  overflow: auto;
+  zoom: 1;
+}
+
 a.btn-large.si-overwrite-br {
   border-radius:55.5px !important;
 }
