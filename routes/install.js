@@ -26,8 +26,13 @@ router.get('/:id/', function(req, res, next) {
     .fetch()
     .then(function(model)
     {
-      var filterRegex = model.attributes.pattern;
-      res.redirect('tweetbot:///mute/keyword?muteLists=1&regex=1&text=' + filterRegex);
+      var filterPattern = model.attributes.pattern;
+      var filterType    = model.attributes.type;
+      if (filterType === 'regex') {
+        res.redirect('tweetbot:///mute/keyword?muteLists=1&regex=1&text=' + filterPattern);
+      } else {
+        res.redirect('tweetbot:///mute/keyword?muteLists=1&regex=0&text=' + filterPattern);
+      }
     });
 });
 
