@@ -110,7 +110,7 @@ router.post('/:id/delete/', function(req, res, next) {
         });
       } else {
         req.flash('error', 'You\'re not authorized to access that');
-        res.redirect('back');        
+        res.redirect('back');
       }
     });
   }
