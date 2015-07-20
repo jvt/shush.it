@@ -70,6 +70,12 @@ router.get('/:id/', function(req, res, next) {
 router.get('/:id/preview', function(req, res, next) {
   var filterID = req.params.id;
 
+  if (!req.session.userID) {
+    req.flash('error', 'You must be logged in to preview a filter');
+    res.redirect('/filter/' + filterID);
+    return false;
+  }
+
   new Filter({id: filterID}).fetch().then(function(model) {
     oauth.get(
       "https://api.twitter.com/1.1/statuses/home_timeline.json",
@@ -77,6 +83,18 @@ router.get('/:id/preview', function(req, res, next) {
       req.session.oauthAccessTokenSecret,
       function (error, data, response) {
         data = JSON.parse(data);
+
+        if (data.errors) {
+          // Partially destroy the incomplete session
+          // Can't do a full req.session.destroy as it would break req.flash
+          delete req.session.userID;
+
+          req.flash('error', 'You must be logged in to preview a filter');
+          res.redirect('/filter/' + filterID);
+          return false;
+        }
+
+        console.log(data);
 
         var tweets = [];
 
