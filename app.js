@@ -29,6 +29,15 @@ var hbs = exphbs.create({
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 
+var knex = require('knex')(knexfile);
+
+bookshelf.DB = require('bookshelf')(knex);
+
+var session_store = new KnexSessionStore({
+  knex: knex,
+  tablename: 'sessions' // optional. Defaults to 'sessions'
+});
+
 app.use(session({
   cookie: {
     maxAge: 1209600
@@ -52,10 +61,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(flash());
 app.use(csrf());
 
-var knex = require('knex')(knexfile);
-
-bookshelf.DB = require('bookshelf')(knex);
-
 GLOBAL.oauth = new OAuth.OAuth(
   'https://api.twitter.com/oauth/request_token',
   'https://api.twitter.com/oauth/access_token',
@@ -65,11 +70,6 @@ GLOBAL.oauth = new OAuth.OAuth(
   null,
   'HMAC-SHA1'
 );
-
-var session_store = new KnexSessionStore({
-  knex: knex,
-  tablename: 'sessions' // optional. Defaults to 'sessions'
-});
 
 app.use(function(req,res,next){
     res.locals.session = req.session;
