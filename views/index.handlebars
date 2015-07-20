@@ -8,20 +8,35 @@
       </div>
     </div>
   </div>
+  {{#unless numResults}}
   <div class="row">
-    {{#each topFilters}}
-    <div class="col s12 m6">
+    <div class="col s12 m12">
       <div class="card white">
         <div class="card-content light-blue-text text-lighten-2">
-          <span class="card-title light-blue-text text-lighten-2">{{ filter.title }}</span>
-          <p>{{ filter.description }}</p>
-        </div>
-        <div class="card-action">
-          <a href="/filter/{{ filter.id }}">View More</a>
-          <a href="/install/{{ filter.id }}">Install to Tweetbot</a>
+          <span class="card-title light-blue-text text-lighten-2">No results</span>
+          <p>Well this is awkward... We there aren't any top filters available right now.</p>
         </div>
       </div>
     </div>
+  </div>
+  {{/unless}}
+
+  {{#each this.rowLayout }}
+  <div class="row">
+    {{#each this }}
+      <div class="col s12 m6">
+        <div class="card white">
+          <div class="card-content light-blue-text text-lighten-2">
+            <span class="card-title light-blue-text text-lighten-2"><a href="/filter/{{ filter.id }}/">{{ filter.title }}</a></span>
+            <p>{{ filter.description }}</p>
+          </div>
+          <div class="card-action">
+            <a href="/filter/{{ filter.id }}/">View More</a>
+            <a href="/install/{{ filter.id }}/" class="waves-effect waves-light">Install to Tweetbot</a>
+          </div>
+        </div>
+      </div>
     {{/each}}
   </div>
+  {{/each}}
 </div>

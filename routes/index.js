@@ -13,8 +13,20 @@ router.get('/', function(req, res, next) {
       .limit(10);
   }).fetch({
     withRelated: ['filter']
-  }).then(function(collection) {
-    res.render('index', { title: 'Home', topFilters: collection.toJSON() });
+  }).then(function(model) {
+
+    var rows = [];
+    model.toJSON().forEach(function(model, index) {
+      if (index === 0 || index % 2 === 0) {
+        var newRow = [];
+        newRow.push(model);
+        rows.push(newRow);
+      } else {
+        rows[rows.length-1].push(model);
+      }
+    });
+
+    res.render('index', { title: 'Home', numResults: model.length, results: model.toJSON(), rowLayout: rows });
   });
 });
 
