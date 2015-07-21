@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
 
-var filter   = require('../models/filter').model;
 var exFilter = require('../models/exportedfilter').collection;
 var user     = require('../models/user').model;
 
@@ -40,6 +39,7 @@ router.get('/:twitterScreenName', function(req, res, next) {
     err.message = 'Looks like you\'ve either navigated to a page that doesn\'t exist or you followed a broken link to get here';
     next(err);
   } else {
+    var filter = require('../models/filter').model;
     var twitterScreenName = req.params.twitterScreenName;
 
     new user({ twitter_screenname: twitterScreenName })

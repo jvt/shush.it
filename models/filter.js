@@ -2,6 +2,7 @@ var bookshelf = require('bookshelf').DB;
 var checkit   = require('checkit');
 
 var User = require('./user').model;
+var ExportedFilter = require('./exportedfilter').model;
 
 exports.model = bookshelf.Model.extend({
   constructor: function() {
