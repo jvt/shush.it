@@ -2,8 +2,8 @@ var express = require('express');
 var router = express.Router();
 
 var Filter   = require('../models/filter').model;
-var exFilter = require('../models/exportedFilter').model;
-var exFilterCollection = require('../models/exportedFilter').collection;
+var exFilter = require('../models/exportedfilter').model;
+var exFilterCollection = require('../models/exportedfilter').collection;
 
 String.prototype.capitalizeFirstLetter = function() {
     return this.charAt(0).toUpperCase() + this.slice(1);

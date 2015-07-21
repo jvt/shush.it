@@ -16,7 +16,9 @@ The following tools are required to compile/run the shush.it codebase:
 2. Ensure your MySQL server is running
 1. Install the npm packages with `npm install`
 1. Install grunt-contrib-compass `gem update --system && gem install compass sass`
+2. Install bower and grunt-cli globally with `npm install -g grunt-cli bower`
 2. Run Grunt/start Grunt watcher by running `grunt` in the main directory
+3. Install Bower dependencies with `bower install`
 3. Start the node server with `npm start`
 4. Profit
 
