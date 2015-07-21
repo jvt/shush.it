@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 var filter   = require('../models/filter').model;
-var exFilter = require('../models/exportedFilter').collection;
+var exFilter = require('../models/exportedfilter').collection;
 var user     = require('../models/user').model;
 
 /* GET home page. */
@@ -34,10 +34,10 @@ router.get('/', function(req, res, next) {
 
 /* GET user's submitted filters */
 router.get('/:twitterScreenName', function(req, res, next) {
-  if (!req.session.userID) {    
+  if (!req.session.userID) {
     var err = new Error();
     err.status = 404;
-    err.message = 'Looks like you\'ve either navigated to a page that doesn\'t exist or you followed a broken link to get here';   
+    err.message = 'Looks like you\'ve either navigated to a page that doesn\'t exist or you followed a broken link to get here';
     next(err);
   } else {
     var twitterScreenName = req.params.twitterScreenName;
@@ -48,7 +48,7 @@ router.get('/:twitterScreenName', function(req, res, next) {
       if (!userModel) {
         var err = new Error();
         err.status = 404;
-        err.message = 'Looks like you\'ve either navigated to a page that doesn\'t exist or you followed a broken link to get here';   
+        err.message = 'Looks like you\'ve either navigated to a page that doesn\'t exist or you followed a broken link to get here';
         next(err);
       }
 
@@ -61,7 +61,7 @@ router.get('/:twitterScreenName', function(req, res, next) {
       } else {
         var err = new Error();
         err.status = 404;
-        err.message = 'Looks like you\'ve either navigated to a page that doesn\'t exist or you followed a broken link to get here';   
+        err.message = 'Looks like you\'ve either navigated to a page that doesn\'t exist or you followed a broken link to get here';
         next(err);
       }
 
