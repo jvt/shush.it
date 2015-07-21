@@ -82,12 +82,12 @@ var routes_install = require('./routes/install');
 var routes_search  = require('./routes/search');
 var routes_top     = require('./routes/top');
 
-app.use('/', routes);
 app.use('/auth', routes_auth);
 app.use('/filter', routes_filter);
 app.use('/install', routes_install);
 app.use('/search', routes_search);
 app.use('/top', routes_top);
+app.use('/', routes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

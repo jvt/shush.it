@@ -51,7 +51,7 @@ router.get('/:twitterScreenName', function(req, res, next) {
         err.message = 'Looks like you\'ve either navigated to a page that doesn\'t exist or you followed a broken link to get here';
         next(err);
       }
-
+      
       if (userModel.attributes.id === req.session.userID) {
         new filter({ owner: userModel.attributes.id })
         .fetchAll()
