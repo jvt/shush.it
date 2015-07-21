@@ -28,20 +28,20 @@ router.get('/:id/', function(req, res, next) {
               var filterPattern = filterModel.attributes.pattern;
               var filterType    = filterModel.attributes.type;
               if (filterType === 'regex') {
-                res.redirect('tweetbot:///mute/keyword?muteLists=1&regex=1&text=' + filterPattern);
+                res.redirect('tweetbot:///mute/keyword?muteLists=1&regex=1&text=' + encodeURIComponent(filterPattern));
               } else {
-                res.redirect('tweetbot:///mute/keyword?muteLists=1&regex=0&text=' + filterPattern);
+                res.redirect('tweetbot:///mute/keyword?muteLists=1&regex=0&text=' + encodeURIComponent(filterPattern));
               }
             })
             .catch(function() {
               req.flash('error', 'There was an error attempting to install that filter');
-              res.redirect('back');   
+              res.redirect('back');
             });
           } else {
             var filterPattern = filterModel.attributes.pattern;
             var filterType    = filterModel.attributes.type;
             if (filterType === 'regex') {
-              res.redirect('tweetbot:///mute/keyword?muteLists=1&regex=1&text=' + filterPattern);
+              res.redirect('tweetbot:///mute/keyword?muteLists=1&regex=1&text=' + encodeURIComponent(filterPattern));
             } else {
               res.redirect('tweetbot:///mute/keyword?muteLists=1&regex=0&text=' + filterPattern);
             }
@@ -51,15 +51,15 @@ router.get('/:id/', function(req, res, next) {
         var filterPattern = filterModel.attributes.pattern;
         var filterType    = filterModel.attributes.type;
         if (filterType === 'regex') {
-          res.redirect('tweetbot:///mute/keyword?muteLists=1&regex=1&text=' + filterPattern);
+          res.redirect('tweetbot:///mute/keyword?muteLists=1&regex=1&text=' + encodeURIComponent(filterPattern));
         } else {
-          res.redirect('tweetbot:///mute/keyword?muteLists=1&regex=0&text=' + filterPattern);
+          res.redirect('tweetbot:///mute/keyword?muteLists=1&regex=0&text=' + encodeURIComponent(filterPattern));
         }
       }
     } else {
       var error = new Error();
       error.status = 404;
-      error.message = 'Looks like you\'ve either navigated to a page that doesn\'t exist or you followed a broken link to get here';   
+      error.message = 'Looks like you\'ve either navigated to a page that doesn\'t exist or you followed a broken link to get here';
       next(error);
     }
   });
