@@ -70,10 +70,11 @@ GLOBAL.oauth = new OAuth.OAuth(
   'HMAC-SHA1'
 );
 
-app.use(function(req,res,next){
+app.use(function(req, res, next) {
     res.locals.session = req.session;
+    res.locals.config = config;
     next();
-})
+});
 
 var routes         = require('./routes/index');
 var routes_auth    = require('./routes/auth');
