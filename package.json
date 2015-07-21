@@ -25,7 +25,8 @@
     "mysql": "^2.7.0",
     "nconf": "^0.7.1",
     "oauth": "^0.9.13",
-    "serve-favicon": "~2.2.1"
+    "serve-favicon": "~2.2.1",
+    "xss": "^0.2.2"
   },
   "devDependencies": {
     "grunt": "^0.4.5",
