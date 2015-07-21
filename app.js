@@ -72,7 +72,7 @@ GLOBAL.oauth = new OAuth.OAuth(
 
 app.use(function(req, res, next) {
     res.locals.session = req.session;
-    res.locals.config = config;
+    res.locals.gatracking = config.get('gaTracking');
     next();
 });
 
