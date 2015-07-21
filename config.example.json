@@ -15,5 +15,6 @@
     "secret": ""
   },
   "url": "http://localhost",
-  "viewcache": false
+  "viewcache": false,
+  "gaTracking": ""
 }
