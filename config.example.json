@@ -14,5 +14,6 @@
   "session": {
     "secret": ""
   },
-  "url": "http://localhost"
+  "url": "http://localhost",
+  "viewcache": false
 }

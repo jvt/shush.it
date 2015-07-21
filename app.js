@@ -48,8 +48,7 @@ app.use(session({
   store: session_store
 }));
 
-// uncomment when shipping into production
-//app.enable('view cache');
+if (config.get('viewcache')) app.enable('view cache');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(__dirname + '/public/favicon.ico'));
