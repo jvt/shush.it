@@ -4,7 +4,7 @@
   flex-direction: column;
 }
 
-.card .card-content .card-title {
+.card .card-content .card-title:not(.large) {
   line-height: inherit !important;
 }
 
