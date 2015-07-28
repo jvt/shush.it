@@ -4,6 +4,10 @@
   flex-direction: column;
 }
 
+.card .card-content .card-title {
+  line-height: inherit !important;
+}
+
 main {
   padding:30px 0 0 0;
   flex: 1 0 auto;

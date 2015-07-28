@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 var exFilter = require('../models/exportedfilter').collection;
+var filter = require('../models/filter').model;
 var user     = require('../models/user').model;
 
 /* GET home page. */
@@ -27,7 +28,27 @@ router.get('/', function(req, res, next) {
       }
     });
 
-    res.render('index', { title: 'Home', numResults: model.length, results: model.toJSON(), rowLayout: rows });
+    new filter().query(function(qb){
+        qb.orderBy('created_at','DESC');
+        qb.limit(6);
+    }).fetchAll({
+
+    }).then(function(newest) {
+      var newestRows = [];
+      newest.toJSON().forEach(function(model, index) {
+        if (index === 0 || index % 2 === 0) {
+          var newRow = [];
+          newRow.push(model);
+          newestRows.push(newRow);
+        } else {
+          newestRows[newestRows.length-1].push(model);
+        }
+      });
+
+      console.log(newestRows)
+
+      res.render('index', { title: 'Home', numResults: model.length, results: model.toJSON(), rowLayout: rows, newRowLayout: newestRows });
+    });
   });
 });
 
