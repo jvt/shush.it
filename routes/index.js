@@ -45,8 +45,6 @@ router.get('/', function(req, res, next) {
         }
       });
 
-      console.log(newestRows)
-
       res.render('index', { title: 'Home', numResults: model.length, results: model.toJSON(), rowLayout: rows, newRowLayout: newestRows });
     });
   });
